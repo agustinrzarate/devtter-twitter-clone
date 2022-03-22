@@ -5,4 +5,10 @@ export const fonts = {
 export const colors = {
   primary: '#0099ff',
   secondary: '#1c5480',
+    gray: '#343A40',
+    white: '#ffffff'
+};
+
+export const breackpoints = {
+    mobile: '450px',
 };
