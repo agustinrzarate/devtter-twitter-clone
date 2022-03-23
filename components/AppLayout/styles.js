@@ -1,10 +1,8 @@
-import styled from 'styled-components';
-import { fonts, colors, breackpoints } from '../../styles/theme';
-import { addOpacityColor } from './../../styles/utils';
+import styled from "styled-components"
+import { fonts, colors, breackpoints } from "../../styles/theme"
+import { addOpacityColor } from "./../../styles/utils"
 
-
-const backgroundColor = addOpacityColor(colors.primary, 0.25);
-const shadow = addOpacityColor(colors.secondary, 0.15);
+const backgroundColor = addOpacityColor(colors.primary, 0.25)
 
 export const App = styled.div`
   font-family: ${fonts.base};
@@ -23,15 +21,15 @@ export const App = styled.div`
     width: 100%;
     height: 100%;
     background-color: #fff;
-    border-radius: 30px;
     box-shadow: 0 10px 25px ${addOpacityColor(colors.secondary, 0.15)};
-    padding: 25px;
+    box-sizing: border-box;
   }
 
   @media (min-width: ${breackpoints.mobile}) {
     main {
       height: 90vh;
       width: ${breackpoints.mobile};
+      border-radius: 30px;
     }
   }
-`;
+`

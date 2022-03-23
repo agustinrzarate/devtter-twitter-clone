@@ -1,6 +1,6 @@
-import styled, {css} from 'styled-components';
-import { colors, fonts } from '../../styles/theme';
-import { addOpacityColor } from './../../styles/utils';
+import styled, { css } from "styled-components"
+import { colors, fonts } from "../../styles/theme"
+import { addOpacityColor } from "./../../styles/utils"
 
 export const ButtonStyle = styled.button`
   border: 0;
@@ -15,13 +15,13 @@ export const ButtonStyle = styled.button`
   &:hover {
     opacity: 0.9;
   }
-  
+
   & > svg {
     margin-right: 10px;
   }
 
   ${(props) =>
-    props.type === 'secondary' &&
+    props.type === "secondary" &&
     css`
       background: ${colors.gray};
       color: ${colors.white};
@@ -29,4 +29,4 @@ export const ButtonStyle = styled.button`
         box-shadow: 0 2px 10px ${addOpacityColor(colors.gray, 0.5)};
       }
     `}
-`;
+`
