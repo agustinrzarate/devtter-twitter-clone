@@ -7,11 +7,13 @@ export const Header = styled.header`
   align-items: center;
   height: 49px;
   position: sticky;
+  z-index: 1;
   top: 0;
   width: 100%;
   box-shadow: 0 4px 2px -2px ${addOpacityColor(colors.gray, 0.1)};
   padding: 0 15px;
-  background-color: transparent;
+  background-color: ${addOpacityColor(colors.white, 0.7)};
+  backdrop-filter: blur(5px);
   h3 {
     margin: 0;
     font-size: 18px;
@@ -20,6 +22,5 @@ export const Header = styled.header`
 `
 
 export const Devits = styled.section`
-  max-height: 90%;
-  overflow-y: auto;
+  height: 100%;
 `

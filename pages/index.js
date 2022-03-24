@@ -8,6 +8,8 @@ import { Button } from "components/Button"
 import GitHub from "components/Icons/GitHub"
 import { loginWithGitHub, onAuthState } from "../firebase/client"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/router"
+import CoffeeCup from "components/CoffeeCup"
 
 const Title = styled.h1`
   color: ${colors.primary};
@@ -28,9 +30,18 @@ const Container = styled.section`
   padding: 40px;
 `
 
+const userState = {
+  NOT_LOGGED: null,
+  LOADING: undefined,
+}
+
 export default function Index() {
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(undefined)
+  const router = useRouter()
+
+  useEffect(() => {
+    user && router.replace("/home")
+  }, [user])
 
   useEffect(() => {
     onAuthState(setUser)
@@ -48,15 +59,30 @@ export default function Index() {
       </Head>
       <AppLayout>
         <Container>
-          <Image src={logo} alt="logo" width={120} height={120} />
-          <Title>Devtter</Title>
-          <Subtitle>Talk about development with developers 👩‍💻👨‍💻</Subtitle>
-          <div style={{ marginTop: 80 }}>
-            <Button buttonType="secondary" onClick={handleClick}>
-              <GitHub width={24} height={24} fill="#fff" />
-              Login with Github
-            </Button>
-          </div>
+          {user === userState.NOT_LOGGED ? (
+            <>
+              <Image src={logo} alt="logo" width={120} height={120} />
+              <Title>Devtter</Title>
+              <Subtitle>Talk about development with developers 👩‍💻👨‍💻</Subtitle>
+              <div style={{ marginTop: 80 }}>
+                <Button buttonType="secondary" onClick={handleClick}>
+                  <GitHub width={24} height={24} fill="#fff" />
+                  Login with Github
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "100%",
+                justifyContent: "center",
+              }}
+            >
+              <CoffeeCup />
+            </div>
+          )}
         </Container>
       </AppLayout>
     </>

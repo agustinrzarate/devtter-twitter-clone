@@ -30,6 +30,28 @@ export const App = styled.div`
       height: 90vh;
       width: ${breackpoints.mobile};
       border-radius: 30px;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        background: #000000;
+        padding: 35px;
+      }
+      &::-webkit-scrollbar:vertical {
+        width: 10px;
+        margin-top: 35px;
+      }
+      &::-webkit-scrollbar-button {
+        height: 20px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #d1d1d1ee;
+        border-radius: 20px;
+        border: 1px solid #ffffff;
+      }
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        padding: 90px;
+      }
     }
   }
 `
