@@ -21,7 +21,7 @@ const firebaseConfig = {
 const auth = getAuth()
 
 const mapUserFromFirebaseAuth = (user) => {
-  if (!user) return
+  if (!user) return null
   console.log(user)
   const { displayName, photoURL, email } = user
   return {
