@@ -6,10 +6,11 @@ import styled from "styled-components"
 import { colors } from "styles/theme"
 import { Button } from "components/Button"
 import GitHub from "components/Icons/GitHub"
-import { loginWithGitHub, onAuthState } from "../firebase/client"
-import { useState, useEffect } from "react"
+import { loginWithGitHub } from "../firebase/client"
+import { useEffect } from "react"
 import { useRouter } from "next/router"
 import CoffeeCup from "components/CoffeeCup"
+import useUser, { USER_STATES } from "hooks/useUser"
 
 const Title = styled.h1`
   color: ${colors.primary};
@@ -30,22 +31,13 @@ const Container = styled.section`
   padding: 40px;
 `
 
-const userState = {
-  NOT_LOGGED: null,
-  LOADING: undefined,
-}
-
 export default function Index() {
-  const [user, setUser] = useState(undefined)
+  const user = useUser()
   const router = useRouter()
 
   useEffect(() => {
     user && router.replace("/home")
   }, [user])
-
-  useEffect(() => {
-    onAuthState(setUser)
-  }, [])
 
   const handleClick = () => {
     loginWithGitHub()
@@ -59,7 +51,7 @@ export default function Index() {
       </Head>
       <AppLayout>
         <Container>
-          {user === userState.NOT_LOGGED ? (
+          {user === USER_STATES.NOT_LOGGED ? (
             <>
               <Image src={logo} alt="logo" width={120} height={120} />
               <Title>Devtter</Title>

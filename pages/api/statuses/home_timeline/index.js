@@ -27,7 +27,7 @@ const timeline = [
   Clean Code es un libro obsoleto que en 2020, con los paradigmas de desarrollo de software que manejamos, puede hacerte más daño que beneficio.`,
   },
   {
-    id: "4",
+    id: "3",
     avatar: "https://avatars.githubusercontent.com/u/40923501?v=4",
     username: "wongmjane",
     message: `Twitter Web App now runs ES6+ for modern browsers*, reducing the polyfill bundle size by 83%
@@ -38,30 +38,30 @@ const timeline = [
     name: "Eduardo Julio Culasso",
   },
   {
-    id: "5",
+    id: "4",
     avatar: "https://avatars.githubusercontent.com/u/1561955?v=4",
     username: "midudev",
     message: "Wow, devter está funcionando y vivo 🦉",
     name: "Miguel Ángel Durán",
+  },
+  {
+    id: "5",
+    username: "zequi",
+    name: "Daniel de la Cruz",
+    avatar: "https://avatars.githubusercontent.com/u/66642504?v=4",
+    message: `Abro paraguas Paraguas
+  
+  Clean Code es un libro obsoleto que en 2020, con los paradigmas de desarrollo de software que manejamos, puede hacerte más daño que beneficio.`,
   },
   {
     id: "6",
-    username: "zequi",
-    name: "Daniel de la Cruz",
-    avatar: "https://avatars.githubusercontent.com/u/66642504?v=4",
-    message: `Abro paraguas Paraguas
-  
-  Clean Code es un libro obsoleto que en 2020, con los paradigmas de desarrollo de software que manejamos, puede hacerte más daño que beneficio.`,
-  },
-  {
-    id: "7",
     avatar: "https://avatars.githubusercontent.com/u/1561955?v=4",
     username: "midudev",
     message: "Wow, devter está funcionando y vivo 🦉",
     name: "Miguel Ángel Durán",
   },
   {
-    id: "8",
+    id: "7",
     username: "zequi",
     name: "Daniel de la Cruz",
     avatar: "https://avatars.githubusercontent.com/u/66642504?v=4",
@@ -70,7 +70,7 @@ const timeline = [
   Clean Code es un libro obsoleto que en 2020, con los paradigmas de desarrollo de software que manejamos, puede hacerte más daño que beneficio.`,
   },
   {
-    id: "9",
+    id: "8",
     username: "zequi",
     name: "Daniel de la Cruz",
     avatar: "https://avatars.githubusercontent.com/u/66642504?v=4",
