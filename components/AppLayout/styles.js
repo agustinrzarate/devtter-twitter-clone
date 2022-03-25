@@ -25,6 +25,10 @@ export const App = styled.div`
     box-sizing: border-box;
   }
 
+  textarea {
+    font-family: ${fonts.base};
+    font-size: 16px;
+  }
   @media (min-width: ${breackpoints.mobile}) {
     main {
       height: 90vh;
@@ -33,12 +37,13 @@ export const App = styled.div`
       overflow-y: auto;
       &::-webkit-scrollbar {
         -webkit-appearance: none;
-        background: #000000;
+        background: #f2f2f2;
         padding: 35px;
       }
       &::-webkit-scrollbar:vertical {
         width: 10px;
         margin-top: 35px;
+        border-radius: 10px;
       }
       &::-webkit-scrollbar-button {
         height: 20px;

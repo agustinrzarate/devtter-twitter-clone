@@ -5,9 +5,15 @@ export const Button = ({
   onClick,
   buttonType = "primary",
   fontSize,
+  disabled,
 }) => {
   return (
-    <ButtonStyle onClick={onClick} type={buttonType} fontSize={fontSize}>
+    <ButtonStyle
+      onClick={onClick}
+      type={buttonType}
+      fontSize={fontSize}
+      disabled={disabled}
+    >
       {children}
     </ButtonStyle>
   )

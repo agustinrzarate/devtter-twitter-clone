@@ -14,3 +14,14 @@ export const Section = styled.section`
     line-height: 1.3125;
   }
 `
+export const HeaderDevit = styled.div`
+  display: flex;
+  align-items: flex-end;
+  span {
+    margin: 0 6px;
+  }
+  div {
+    color: #555;
+    font-size: 14px;
+  }
+`

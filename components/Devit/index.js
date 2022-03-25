@@ -1,13 +1,25 @@
 import Avatar from "components/Avatar"
-import { DevitStyle, Section } from "./styles"
+import { DevitStyle, HeaderDevit, Section } from "./styles"
 
-export default function Devit({ name, avatar, id, message, username }) {
+export default function Devit({
+  name,
+  avatar,
+  id,
+  content,
+  userName,
+  userId,
+  createdAt,
+}) {
   return (
     <DevitStyle>
-      <Avatar src={avatar} alt={username} />
+      <Avatar src={avatar} alt={userName} />
       <Section>
-        <strong>{username}</strong>
-        <p>{message} </p>
+        <HeaderDevit>
+          <strong>{userName}</strong>
+          <span> · </span>
+          <div>{createdAt}</div>
+        </HeaderDevit>
+        <p>{content} </p>
       </Section>
     </DevitStyle>
   )
