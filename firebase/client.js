@@ -5,6 +5,13 @@ import {
   GithubAuthProvider,
   onAuthStateChanged,
 } from "firebase/auth"
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  Timestamp,
+  getDocs,
+} from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3bXJFjGgqBPhqJoE_H_eaSwKNPzPdM1I",
@@ -19,14 +26,16 @@ const firebaseConfig = {
 !getApps.length && initializeApp(firebaseConfig)
 
 const auth = getAuth()
+const db = getFirestore()
 
 const mapUserFromFirebaseAuth = (user) => {
   if (!user) return null
-  console.log(user)
-  const { displayName, photoURL, email } = user
+
+  const { displayName, photoURL, email, uid } = user
   return {
+    uid,
     email,
-    name: displayName,
+    userName: displayName,
     avatar: photoURL,
   }
 }
@@ -45,4 +54,29 @@ export const onAuthState = (onChange) => {
     const normalizedUser = mapUserFromFirebaseAuth(user)
     onChange(normalizedUser)
   })
+}
+
+export const addDevit = async ({ avatar, content, userId, userName }) => {
+  return addDoc(collection(db, "devits"), {
+    avatar,
+    content,
+    userId,
+    userName,
+    createdAt: Timestamp.fromDate(new Date()),
+    likesCount: 0,
+    sharedCount: 0,
+  })
+}
+
+export const fetchLatestDevits = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "devits"))
+    const docs = []
+    querySnapshot.forEach((doc) => {
+      const date = new Date(doc.data().createdAt.seconds * 1000)
+      const normalizedCreatedAt = new Intl.DateTimeFormat("es-ES").format(date)
+      docs.push({ ...doc.data(), id: doc.id, createdAt: normalizedCreatedAt })
+    })
+    return docs
+  } catch (error) {}
 }
