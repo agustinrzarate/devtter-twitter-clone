@@ -23,6 +23,10 @@ export const App = styled.div`
     background-color: #fff;
     box-shadow: 0 10px 25px ${addOpacityColor(colors.secondary, 0.15)};
     box-sizing: border-box;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   textarea {
@@ -31,22 +35,17 @@ export const App = styled.div`
   }
   @media (min-width: ${breackpoints.mobile}) {
     main {
+      overflow-y: auto;
       height: 90vh;
       width: ${breackpoints.mobile};
       border-radius: 30px;
-      overflow-y: auto;
       &::-webkit-scrollbar {
         -webkit-appearance: none;
         background: #f2f2f2;
-        padding: 35px;
       }
       &::-webkit-scrollbar:vertical {
         width: 10px;
-        margin-top: 35px;
         border-radius: 10px;
-      }
-      &::-webkit-scrollbar-button {
-        height: 20px;
       }
       &::-webkit-scrollbar-thumb {
         background-color: #d1d1d1ee;
