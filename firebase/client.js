@@ -11,7 +11,10 @@ import {
   addDoc,
   Timestamp,
   getDocs,
+  orderBy,
+  query,
 } from "firebase/firestore"
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3bXJFjGgqBPhqJoE_H_eaSwKNPzPdM1I",
@@ -26,7 +29,11 @@ const firebaseConfig = {
 !getApps.length && initializeApp(firebaseConfig)
 
 const auth = getAuth()
+const storage = getStorage()
 const db = getFirestore()
+
+const devitsRef = collection(db, "devits")
+const q = query(devitsRef, orderBy("createdAt", "desc"))
 
 const mapUserFromFirebaseAuth = (user) => {
   if (!user) return null
@@ -56,10 +63,11 @@ export const onAuthState = (onChange) => {
   })
 }
 
-export const addDevit = async ({ avatar, content, userId, userName }) => {
-  return addDoc(collection(db, "devits"), {
+export const addDevit = async ({ avatar, content, userId, userName, img }) => {
+  return addDoc(devitsRef, {
     avatar,
     content,
+    img,
     userId,
     userName,
     createdAt: Timestamp.fromDate(new Date()),
@@ -70,13 +78,19 @@ export const addDevit = async ({ avatar, content, userId, userName }) => {
 
 export const fetchLatestDevits = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, "devits"))
+    const querySnapshot = await getDocs(q)
+
     const docs = []
     querySnapshot.forEach((doc) => {
-      const date = new Date(doc.data().createdAt.seconds * 1000)
-      const normalizedCreatedAt = new Intl.DateTimeFormat("es-ES").format(date)
-      docs.push({ ...doc.data(), id: doc.id, createdAt: normalizedCreatedAt })
+      const { createdAt } = doc.data()
+      docs.push({ ...doc.data(), id: doc.id, createdAt: +createdAt.toDate() })
     })
     return docs
   } catch (error) {}
+}
+
+export const uploadImage = (file) => {
+  const storageRef = ref(storage, `/images/${file.name}`)
+  const uploadTask = uploadBytesResumable(storageRef, file)
+  return uploadTask
 }

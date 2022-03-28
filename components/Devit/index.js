@@ -1,6 +1,6 @@
 import Avatar from "components/Avatar"
-import { DevitStyle, HeaderDevit, Section } from "./styles"
-
+import { DevitStyle, HeaderDevit, Section, Img, ContainerImg } from "./styles"
+import useTimeAgo from "hooks/useTimeAgo"
 export default function Devit({
   name,
   avatar,
@@ -9,7 +9,9 @@ export default function Devit({
   userName,
   userId,
   createdAt,
+  img,
 }) {
+  const timeago = useTimeAgo(createdAt)
   return (
     <DevitStyle>
       <Avatar src={avatar} alt={userName} />
@@ -17,9 +19,22 @@ export default function Devit({
         <HeaderDevit>
           <strong>{userName}</strong>
           <span> · </span>
-          <div>{createdAt}</div>
+          <div>{timeago}</div>
         </HeaderDevit>
         <p>{content} </p>
+        {img && (
+          <ContainerImg>
+            <Img
+              src={img}
+              alt=""
+              title=""
+              width="100%"
+              height="100%"
+              layout="responsive"
+              objectFit="contain"
+            />
+          </ContainerImg>
+        )}
       </Section>
     </DevitStyle>
   )

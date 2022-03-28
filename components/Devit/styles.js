@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import Image from "next/image"
 
 export const DevitStyle = styled.article`
   border-bottom: 1px solid #eaf7ff;
@@ -24,4 +25,14 @@ export const HeaderDevit = styled.div`
     color: #555;
     font-size: 14px;
   }
+`
+
+export const Img = styled(Image)`
+  border-radius: 10px;
+  border: 1px solid #f2f2f2 !important ;
+`
+
+export const ContainerImg = styled.div`
+  width: 220px;
+  margin-top: 10px;
 `
