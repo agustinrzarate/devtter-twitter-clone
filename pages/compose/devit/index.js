@@ -1,4 +1,3 @@
-import AppLayout from "components/AppLayout"
 import { Button } from "components/Button"
 import { TextArea, Form, Img, Section, ButtonClose, Container } from "./styles"
 import useUser from "hooks/useUser"
@@ -102,7 +101,7 @@ export default function ComposeTweet() {
   }
 
   return (
-    <AppLayout>
+    <>
       <Head>
         <title> Crear un devit / Devtter</title>
       </Head>
@@ -150,6 +149,6 @@ export default function ComposeTweet() {
           )}
         </Container>
       </Form>
-    </AppLayout>
+    </>
   )
 }

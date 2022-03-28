@@ -1,4 +1,3 @@
-import AppLayout from "components/AppLayout"
 import { Devits, Footer } from "./styles"
 import { useState, useEffect } from "react"
 import Devit from "components/Devit"
@@ -20,7 +19,7 @@ export default function Home() {
   }, [user])
 
   return (
-    <AppLayout>
+    <>
       <Head>
         <title>Inicio / Devtter</title>
       </Head>
@@ -61,6 +60,6 @@ export default function Home() {
           </a>
         </Link>
       </Footer>
-    </AppLayout>
+    </>
   )
 }
