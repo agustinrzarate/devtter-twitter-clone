@@ -8,6 +8,9 @@ import { useRouter } from "next/router"
 import Head from "next/head"
 import { getDownloadURL } from "firebase/storage"
 import Avatar from "components/Avatar"
+import Header from "components/Header"
+import ArrowLeft from "components/Icons/ArrowLeft"
+import Link from "next/link"
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -103,9 +106,19 @@ export default function ComposeTweet() {
       <Head>
         <title> Crear un devit / Devtter</title>
       </Head>
-      <Container>
-        {user && <Avatar src={user.avatar} alt={user.userName} />}
-        <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
+        <Header>
+          <Link href="/">
+            <a>
+              <ArrowLeft width={27} height={32} stroke="#09f" />
+            </a>
+          </Link>
+          <Button fontSize="14px" disabled={isButtonDisabled}>
+            Devittear
+          </Button>
+        </Header>
+        <Container>
+          {user && <Avatar src={user.avatar} alt={user.userName} />}
           <TextArea
             placeholder="¿Qué esta pasando?"
             value={message}
@@ -135,13 +148,8 @@ export default function ComposeTweet() {
               </div>
             </Section>
           )}
-          <div style={{ margin: 10 }}>
-            <Button fontSize="14px" disabled={isButtonDisabled}>
-              Devittear
-            </Button>
-          </div>
-        </Form>
-      </Container>
+        </Container>
+      </Form>
     </AppLayout>
   )
 }

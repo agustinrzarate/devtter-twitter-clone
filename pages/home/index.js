@@ -1,5 +1,5 @@
 import AppLayout from "components/AppLayout"
-import { Header, Devits, Footer } from "./styles"
+import { Devits, Footer } from "./styles"
 import { useState, useEffect } from "react"
 import Devit from "components/Devit"
 import useUser from "hooks/useUser"
@@ -9,6 +9,7 @@ import HomeIcon from "components/Icons/HomeIcon"
 import Search from "components/Icons/Search"
 import Create from "components/Icons/Create"
 import Head from "next/head"
+import Header from "components/Header"
 
 export default function Home() {
   const [posts, setPosts] = useState([])
@@ -24,7 +25,7 @@ export default function Home() {
         <title>Inicio / Devtter</title>
       </Head>
       <Header>
-        <h3>Inicio</h3>
+        <h3>Home</h3>
       </Header>
       <Devits>
         {posts.map(
