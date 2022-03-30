@@ -1,4 +1,4 @@
-import { Devits, Footer } from "./styles"
+import { Devits, Footer, DevitHoverStyle } from "styles/Home"
 import { useState, useEffect } from "react"
 import Devit from "components/Devit"
 import useUser from "hooks/useUser"
@@ -9,6 +9,7 @@ import Search from "components/Icons/Search"
 import Create from "components/Icons/Create"
 import Head from "next/head"
 import Header from "components/Header"
+import { useRouter } from "next/router"
 
 export default function Home() {
   const [posts, setPosts] = useState([])
@@ -17,6 +18,13 @@ export default function Home() {
   useEffect(() => {
     user && fetchLatestDevits().then(setPosts)
   }, [user])
+
+  const router = useRouter()
+
+  const handleArticleClick = (e, id) => {
+    e.preventDefault()
+    router.push(`status/${id}`)
+  }
 
   return (
     <>
@@ -29,17 +37,21 @@ export default function Home() {
       <Devits>
         {posts.map(
           ({ id, avatar, userName, name, content, userId, createdAt, img }) => (
-            <Devit
+            <DevitHoverStyle
               key={id}
-              avatar={avatar}
-              userName={userName}
-              name={name}
-              id={id}
-              content={content}
-              userId={userId}
-              createdAt={createdAt}
-              img={img}
-            />
+              onClick={(e) => handleArticleClick(e, id)}
+            >
+              <Devit
+                avatar={avatar}
+                userName={userName}
+                name={name}
+                id={id}
+                content={content}
+                userId={userId}
+                createdAt={createdAt}
+                img={img}
+              />
+            </DevitHoverStyle>
           )
         )}
       </Devits>

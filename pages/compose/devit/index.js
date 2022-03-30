@@ -1,5 +1,5 @@
 import { Button } from "components/Button"
-import { TextArea, Form, Img, Section, ButtonClose, Container } from "./styles"
+import { TextArea, Form, Section, ButtonClose, Container } from "styles/Devit"
 import useUser from "hooks/useUser"
 import { useState, useEffect } from "react"
 import { addDevit, uploadImage } from "../../../firebase/client"
@@ -10,6 +10,7 @@ import Avatar from "components/Avatar"
 import Header from "components/Header"
 import ArrowLeft from "components/Icons/ArrowLeft"
 import Link from "next/link"
+import Image from "next/image"
 
 const COMPOSE_STATES = {
   USER_NOT_KNOWN: 0,
@@ -26,7 +27,7 @@ export const DRAG_IMAGE_STATES = {
   COMPLETE: 3,
 }
 
-export default function ComposeTweet() {
+export default function Devit() {
   const user = useUser()
   const [message, setMessage] = useState("")
   const [status, setStatus] = useState(COMPOSE_STATES.USER_NOT_KNOWN)
@@ -135,7 +136,7 @@ export default function ComposeTweet() {
                   width: "250px",
                 }}
               >
-                <Img
+                <Image
                   src={imgURL}
                   alt=""
                   title=""
@@ -143,6 +144,7 @@ export default function ComposeTweet() {
                   height="100%"
                   layout="responsive"
                   objectFit="contain"
+                  style={{ borderRadius: 10, border: "1px solid #f2f2f2" }}
                 />
               </div>
             </Section>

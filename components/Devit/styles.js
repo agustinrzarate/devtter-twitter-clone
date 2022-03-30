@@ -6,6 +6,7 @@ export const DevitStyle = styled.article`
   display: flex;
   align-items: top;
   padding: 10px 15px 10px 18px;
+  transition: 0.3s ease;
 `
 export const Section = styled.section`
   margin-left: 12px;
@@ -21,9 +22,13 @@ export const HeaderDevit = styled.div`
   span {
     margin: 0 6px;
   }
-  div {
+  a {
+    text-decoration: none;
     color: #555;
     font-size: 14px;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
 

@@ -1,6 +1,5 @@
 import styled from "styled-components"
-import { DRAG_IMAGE_STATES } from "."
-import Image from "next/image"
+import { DRAG_IMAGE_STATES } from "../../pages/compose/devit"
 
 export const TextArea = styled.textarea`
   border: ${(props) =>
@@ -14,11 +13,6 @@ export const TextArea = styled.textarea`
   margin: 0 15px;
 `
 export const Form = styled.form``
-
-export const Img = styled(Image)`
-  border-radius: 10px;
-  border: 1px solid #f2f2f2 !important ;
-`
 
 export const Section = styled.section`
   max-width: 100%;

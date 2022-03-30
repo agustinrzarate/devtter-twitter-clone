@@ -62,16 +62,7 @@ export default function Index() {
             </div>
           </>
         ) : (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              height: "100%",
-              justifyContent: "center",
-            }}
-          >
-            <CoffeeCup />
-          </div>
+          <CoffeeCup />
         )}
       </Container>
     </>

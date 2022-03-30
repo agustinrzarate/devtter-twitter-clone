@@ -7,11 +7,20 @@ export default function CoffeeCup() {
     setheight("90px")
   }, 0)
   return (
-    <ContainerCup>
-      <SemiCircle></SemiCircle>
-      <Cup>
-        <Coffee height={height}></Coffee>
-      </Cup>
-    </ContainerCup>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        height: "100%",
+        justifyContent: "center",
+      }}
+    >
+      <ContainerCup>
+        <SemiCircle></SemiCircle>
+        <Cup>
+          <Coffee height={height}></Coffee>
+        </Cup>
+      </ContainerCup>
+    </div>
   )
 }
