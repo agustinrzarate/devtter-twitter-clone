@@ -10,9 +10,9 @@ import {
   collection,
   addDoc,
   Timestamp,
-  getDocs,
   orderBy,
   query,
+  onSnapshot,
 } from "firebase/firestore"
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
@@ -76,21 +76,18 @@ export const addDevit = async ({ avatar, content, userId, userName, img }) => {
   })
 }
 
-export const fetchLatestDevits = async () => {
-  try {
-    const querySnapshot = await getDocs(q)
-
-    const docs = []
-    querySnapshot.forEach((doc) => {
-      const { createdAt } = doc.data()
-      docs.push({ ...doc.data(), id: doc.id, createdAt: +createdAt.toDate() })
-    })
-    return docs
-  } catch (error) {}
-}
-
 export const uploadImage = (file) => {
   const storageRef = ref(storage, `/images/${file.name}`)
   const uploadTask = uploadBytesResumable(storageRef, file)
   return uploadTask
+}
+
+export const listenLatestDevits = (callback) => {
+  return onSnapshot(q, (snapshot) => {
+    const newDevits = snapshot.docs.map((doc) => {
+      const { createdAt } = doc.data()
+      return { ...doc.data(), id: doc.id, createdAt: +createdAt.toDate() }
+    })
+    callback(newDevits)
+  })
 }

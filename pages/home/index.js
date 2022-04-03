@@ -2,7 +2,7 @@ import { Devits, Footer, DevitHoverStyle } from "styles/Home"
 import { useState, useEffect } from "react"
 import Devit from "components/Devit"
 import useUser from "hooks/useUser"
-import { fetchLatestDevits } from "../../firebase/client"
+import { listenLatestDevits } from "../../firebase/client"
 import Link from "next/link"
 import HomeIcon from "components/Icons/HomeIcon"
 import Search from "components/Icons/Search"
@@ -16,7 +16,11 @@ export default function Home() {
   const user = useUser()
 
   useEffect(() => {
-    user && fetchLatestDevits().then(setPosts)
+    let unsub
+    if (user) {
+      unsub = listenLatestDevits(setPosts)
+    }
+    return () => unsub && unsub()
   }, [user])
 
   const router = useRouter()
