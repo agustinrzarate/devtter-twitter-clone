@@ -13,7 +13,6 @@ import {
   orderBy,
   query,
   onSnapshot,
-  doc,
   where,
 } from "firebase/firestore"
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
@@ -34,7 +33,6 @@ const firebaseConfig = {
 const auth = getAuth()
 const storage = getStorage()
 const db = getFirestore()
-
 const devitsRef = collection(db, "devits")
 const usersRef = collection(db, "users")
 
@@ -126,5 +124,19 @@ export const addUser = async ({ userId, userName, follows ,following }) => {
     userName,
     follows,
     following
+  })
+}
+
+export const findUser = (callback, value) => {
+  const queryUser = query(
+    usersRef,
+    where("userName", ">=", value),
+    where("userName", "<=", value + "~")
+  )
+  return onSnapshot(queryUser, (snapshot) => {
+    const user = snapshot.docs.map((doc) => {
+      return doc.data()
+    })
+    callback(user)
   })
 }

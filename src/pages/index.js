@@ -8,8 +8,6 @@ import GitHub from "src/components/Icons/GitHub"
 import { loginWithGitHub } from "../firebase/client"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import CoffeeCup from "src/components/CoffeeCup"
-import useUser, { USER_STATES } from "src/hooks/useUser"
 import { useDispatch, useSelector } from "react-redux"
 import { getUser } from "src/redux/selectors/user"
 const Title = styled.h1`

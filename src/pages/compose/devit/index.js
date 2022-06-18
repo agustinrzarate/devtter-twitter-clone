@@ -1,6 +1,5 @@
 import { Button } from "src/components/Button"
 import { TextArea, Form, Section, ButtonClose, Container } from "src/styles/Devit"
-import useUser from "src/hooks/useUser"
 import { useState, useEffect } from "react"
 import { addDevit, uploadImage } from "../../../firebase/client"
 import { useRouter } from "next/router"
