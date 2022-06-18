@@ -106,7 +106,7 @@ export default function Devit() {
   }
 
   return (
-    <>
+    <div style={{height:'100%'}}>
       <Head>
         <title> Crear un devit / Devtter</title>
       </Head>
@@ -155,6 +155,6 @@ export default function Devit() {
           )}
         </Container>
       </Form>
-    </>
+    </div>
   )
 }

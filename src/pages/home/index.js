@@ -1,11 +1,7 @@
-import { Devits, Footer, DevitHoverStyle } from "src/styles/Home"
+import { Devits, DevitHoverStyle } from "src/styles/Home"
 import { useState, useEffect } from "react"
 import Devit from "src/components/Devit"
 import { listenLatestDevits } from "../../firebase/client"
-import Link from "next/link"
-import HomeIcon from "src/components/Icons/HomeIcon"
-import Search from "src/components/Icons/Search"
-import Create from "src/components/Icons/Create"
 import Head from "next/head"
 import Header from "src/components/Header"
 import { useRouter } from "next/router"
@@ -17,12 +13,11 @@ export default function Home() {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(false)
   const user = useSelector(state => getUser(state))
-
   useEffect(() => {
     let unsub
     if (user) {
       setLoading(true)
-      unsub = listenLatestDevits(setPosts, setLoading)
+      unsub = listenLatestDevits(setPosts, setLoading) 
     }
     return () => unsub && unsub()
   }, [user])
@@ -64,23 +59,6 @@ export default function Home() {
           )
         )}
       </Devits>
-      <Footer>
-        <Link href="/home">
-          <a>
-            <HomeIcon width={32} height={32} stroke="#09f" />
-          </a>
-        </Link>
-        <Link href="/search">
-          <a>
-            <Search width={32} height={32} stroke="#09f" />
-          </a>
-        </Link>
-        <Link href="/compose/devit">
-          <a>
-            <Create width={32} height={32} stroke="#09f" />
-          </a>
-        </Link>
-      </Footer>
     </>
   )
 }

@@ -43,7 +43,7 @@ export default function DevitPage(props) {
   if (router.isFallback) return <CoffeeCup />
 
   return (
-    <div>
+    <div style={{height: '100%'}}>
       <Header>
         <Link href="/">
           <a>

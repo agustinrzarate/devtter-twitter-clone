@@ -1,6 +1,6 @@
 const admin = require("firebase-admin")
 
-const serviceAccount = require("./devtter-firebase-keys.json")
+const serviceAccount = require(process.env)
 
 try {
   admin.initializeApp({

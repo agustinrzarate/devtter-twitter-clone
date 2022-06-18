@@ -13,6 +13,8 @@ import {
   orderBy,
   query,
   onSnapshot,
+  doc,
+  where,
 } from "firebase/firestore"
 import { getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { loginUser } from "src/redux/features/user/userSlice"
@@ -34,8 +36,11 @@ const storage = getStorage()
 const db = getFirestore()
 
 const devitsRef = collection(db, "devits")
-const follow = collection(db, "follow")
+const usersRef = collection(db, "users")
+
 const q = query(devitsRef, orderBy("createdAt", "desc"))
+const queryUsers = query(usersRef);
+
 
 const mapUserFromFirebaseAuth = (user) => {
   if (!user) return null
@@ -93,5 +98,33 @@ export const listenLatestDevits = (callback, setLoading) => {
     })
     callback(newDevits);
     setLoading(false);
+  })
+}
+
+export const listenUsers = (callback) => {
+  return onSnapshot(queryUsers, (snapshot) => {
+    const users = snapshot.docs.map((doc) => {
+      return doc.data()
+    });
+    callback(users);
+  })
+}
+
+export const existUser = (callback, value) => {
+  const queryUser = query(usersRef, where("userId", "==", value));
+  return onSnapshot(queryUser, (snapshot) => {
+    const user = snapshot.docs.map((doc) => {
+      return doc.data()
+    });
+    callback(user)
+  })
+}
+
+export const addUser = async ({ userId, userName, follows ,following }) => {
+  return addDoc(usersRef, {
+    userId,
+    userName,
+    follows,
+    following
   })
 }
