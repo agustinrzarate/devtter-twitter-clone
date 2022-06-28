@@ -1,4 +1,4 @@
-import { addOpacityColor } from "../utils"
+import { addOpacityColor } from "../../utils"
 import { colors } from "src/styles/theme"
 import styled from "styled-components"
 

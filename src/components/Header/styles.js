@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { addOpacityColor } from "../../styles/utils"
+import { addOpacityColor } from "../../utils"
 import { colors } from "src/styles/theme"
 
 export const HeaderStyle = styled.header`

@@ -1,5 +1,11 @@
 import { Button } from "src/components/Button"
-import { TextArea, Form, Section, ButtonClose, Container } from "src/styles/Devit"
+import {
+  TextArea,
+  Form,
+  Section,
+  ButtonClose,
+  Container,
+} from "src/styles/Devit"
 import { useState, useEffect } from "react"
 import { addDevit, uploadImage } from "../../../firebase/client"
 import { useRouter } from "next/router"
@@ -29,7 +35,7 @@ export const DRAG_IMAGE_STATES = {
 }
 
 export default function Devit() {
-  const user = useSelector((state)=> getUser(state))
+  const user = useSelector((state) => getUser(state))
   const [message, setMessage] = useState("")
   const [status, setStatus] = useState(COMPOSE_STATES.USER_NOT_KNOWN)
   const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
@@ -82,7 +88,7 @@ export default function Devit() {
       })
       router.push("/home")
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -105,21 +111,21 @@ export default function Devit() {
   }
 
   return (
-    <div style={{height:'100%'}}>
+    <div style={{ height: "100%" }}>
       <Head>
         <title> Crear un devit / Devtter</title>
       </Head>
+      <Header>
+        <Link href="/home">
+          <a>
+            <ArrowLeft width={27} height={32} stroke="#09f" />
+          </a>
+        </Link>
+        <Button fontSize="14px" disabled={isButtonDisabled}>
+          Devittear
+        </Button>
+      </Header>
       <Form onSubmit={handleSubmit}>
-        <Header>
-          <Link href="/home">
-            <a>
-              <ArrowLeft width={27} height={32} stroke="#09f" />
-            </a>
-          </Link>
-          <Button fontSize="14px" disabled={isButtonDisabled}>
-            Devittear
-          </Button>
-        </Header>
         <Container>
           {user && <Avatar src={user.avatar} alt={user.userName} />}
           <TextArea

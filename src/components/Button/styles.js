@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { colors, fonts } from "../../styles/theme"
-import { addOpacityColor } from "../../styles/utils"
+import { addOpacityColor } from "../../utils"
 
 export const ButtonStyle = styled.button`
   border: 0;

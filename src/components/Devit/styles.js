@@ -1,8 +1,19 @@
 import styled from "styled-components"
-import Image from "next/image"
+
+export const Container = styled.div``
+
+
+export const FooterDevit = styled.div`
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+  border-bottom: 1px solid #eaf7ff;
+  align-items: center;
+  justify-content: space-around;
+`
 
 export const DevitStyle = styled.article`
-  border-bottom: 1px solid #eaf7ff;
+
   display: flex;
   align-items: top;
   padding: 10px 15px 10px 18px;
@@ -32,12 +43,15 @@ export const HeaderDevit = styled.div`
   }
 `
 
-export const Img = styled(Image)`
+export const Img = styled.img`
   border-radius: 10px;
   border: 1px solid #f2f2f2 !important ;
+  object-fit: cover;
+  max-height: 200px;
 `
 
 export const ContainerImg = styled.div`
-  width: 220px;
+  max-width: 220px;
+  max-height: 200px;
   margin-top: 10px;
 `

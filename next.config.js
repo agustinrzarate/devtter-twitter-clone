@@ -6,7 +6,7 @@ const nextConfig = {
       "avatars.githubusercontent.com",
       "firebasestorage.googleapis.com",
     ],
-  },
+  }
 }
 
 module.exports = nextConfig

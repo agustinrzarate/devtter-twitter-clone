@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { fonts, colors, breackpoints } from "../../styles/theme"
-import { addOpacityColor } from "../../styles/utils"
+import { addOpacityColor } from "../../utils"
 
 const backgroundColor = addOpacityColor(colors.primary, 0.25)
 

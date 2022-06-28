@@ -4,30 +4,39 @@ import Devit from "src/components/Devit"
 import { listenLatestDevits } from "../../firebase/client"
 import Head from "next/head"
 import Header from "src/components/Header"
-import { useRouter } from "next/router"
+/* import { useRouter } from "next/router"
+ */
 import { useSelector } from "react-redux"
 import { getUser } from "src/redux/selectors/user"
 import Coffee from "src/components/Coffee"
+import { getUserAccount } from "src/redux/selectors/userAccount"
 
 export default function Home() {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(false)
   const user = useSelector((state) => getUser(state))
+  const userAccount = useSelector((state) => getUserAccount(state))
+
   useEffect(() => {
     let unsub
-    if (user) {
+    if (user && userAccount) {
       setLoading(true)
-      unsub = listenLatestDevits(setPosts, setLoading)
+      unsub = listenLatestDevits(
+        setPosts,
+        setLoading,
+        [...userAccount.following, userAccount.userId],
+        userAccount.userId
+      )
     }
     return () => unsub && unsub()
-  }, [user])
+  }, [user, userAccount])
 
-  const router = useRouter()
+  /*   const router = useRouter() */
 
-  const handleArticleClick = (e, id) => {
+  /* const handleArticleClick = (e, id) => {
     e.preventDefault()
     router.push(`status/${id}`)
-  }
+  } */
 
   return (
     <>
@@ -50,12 +59,17 @@ export default function Home() {
               userId,
               createdAt,
               img,
+              sharedCount,
+              likesCount,
             }) => (
               <DevitHoverStyle
                 key={id}
-                onClick={(e) => handleArticleClick(e, id)}
+                tabIndex={0}
+                /*  onClick={(e) => handleArticleClick(e, id)} */
               >
                 <Devit
+                  likesCount={likesCount}
+                  sharedCount={sharedCount}
                   avatar={avatar}
                   userName={userName}
                   name={name}
